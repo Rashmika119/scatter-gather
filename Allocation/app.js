@@ -1,5 +1,5 @@
 import express from "express";
-import allocationRoute from "./Controller.js";
+import allocationRoute from "./controller.js";
 const app=express();
 const port=3000;
 

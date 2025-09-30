@@ -1,6 +1,7 @@
 
 
 export const getAllocationInfo=(req,res)=>{
+    console.log("123")
     try{
     const companyName=req.params.name;
 

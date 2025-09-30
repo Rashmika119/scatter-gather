@@ -8,7 +8,7 @@ export const getLogisticInfo=async(req,res)=>{
 
     const time=Date.now();
     const location=["newyork","london","paris"];
-d
+
     if(!time || !location){
         return res.status(404).json({message:"No such company found"})
     }

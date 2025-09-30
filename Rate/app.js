@@ -1,5 +1,5 @@
 import express from 'express';
-import rateRoute from './Controller.js';
+import rateRoute from './controller.js';
 const app=express();
 const port=6000;
 
