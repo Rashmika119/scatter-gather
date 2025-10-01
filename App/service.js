@@ -1,10 +1,9 @@
 import http from "http";
-import { CLIENT_RENEG_LIMIT } from "tls";
+
 
 function callService({ hostname, port, path, method }) {
     return new Promise((resolve, reject) => {
         const req = http.request({ hostname, port, path, method }, (res) => {
-            console.log(hostname, port, path, method);
             let data = "";
             res.on("data", (chunk) => (data += chunk));
             res.on("end", () => {
@@ -16,6 +15,10 @@ function callService({ hostname, port, path, method }) {
                 }
             });
         });
+        req.end("end",(error)=>{
+            console.log("request error: "+error);
+            resolve("request fails");
+        })
 
        
 
@@ -71,7 +74,7 @@ export const getAppInfo = async (req, res) => {
         return res.status(200).json({
             companyName,
             time,
-            value: result3.value || "no value",
+            value: result3.value || "no value",cd
             location: result2.location || "no location",
             duration: result1.duration || "no duration",
         });
