@@ -1,8 +1,7 @@
 import http from "http";
 
-
 function callService({ hostname, port, path, method }) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const req = http.request({ hostname, port, path, method }, (res) => {
             let data = "";
             res.on("data", (chunk) => (data += chunk));
@@ -15,12 +14,10 @@ function callService({ hostname, port, path, method }) {
                 }
             });
         });
-        req.end("end",(error)=>{
+        req.on("error",(error)=>{
             console.log("request error: "+error);
             resolve("request fails");
         })
-
-       
 
         setTimeout(() => {
             req.abort();
@@ -74,7 +71,7 @@ export const getAppInfo = async (req, res) => {
         return res.status(200).json({
             companyName,
             time,
-            value: result3.value || "no value",cd
+            value: result3.value || "no value",
             location: result2.location || "no location",
             duration: result1.duration || "no duration",
         });
